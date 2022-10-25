@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.heartfulness.platform.grpc.seeker.service";
+option java_outer_classname = "SeekerServiceProto";
+option objc_class_prefix = "Seeker";
+
+package com.heartfulness.platform.grpc.seeker.service;
+import "common.proto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/type.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+// Interface exported by the server.
+service SeekerService {
+  rpc createSeeker (Seeker) returns (Seeker) {};
+  rpc updateSeeker (Seeker) returns (Seeker) {};
+  rpc findSeekerByFilter(SeekerFilter) returns (SeekerList) {};
+  rpc deleteSeeker(google.protobuf.Int64Value) returns (google.protobuf.Empty) {};
+  rpc findSeekerById (google.protobuf.Int64Value) returns (Seeker) {};
+  rpc findAllSeekers(google.protobuf.Empty) returns (stream Seeker) {};
+  rpc updateSeekersInBatch(stream Seeker) returns (stream Seeker){};
+}
+
+//Department filter object
+message SeekerFilter {
+  int64 id = 1;
+  string seekerName = 2;
+  string location = 3;
+}
+
+//Department result list
+message SeekerList {
+    repeated Seeker resultList=1;
+    google.protobuf.Int64Value resultCount=2;
+}
+
+//Department object
+message Seeker {
+  int64 id = 1;
+  string seekerName = 2;
+  string location = 3;
+  repeated Application applications = 4;
+}
+//Employee object
+message Application {
+  int64 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string phone = 4;
+  string email = 5;
+}

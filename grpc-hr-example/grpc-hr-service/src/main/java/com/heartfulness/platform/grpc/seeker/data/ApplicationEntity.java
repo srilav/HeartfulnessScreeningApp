@@ -1,18 +1,19 @@
-package com.jobinesh.example.grpc.hr.data;
+package com.heartfulness.platform.grpc.seeker.data;
 
-import com.jobinesh.example.grpc.hr.service.Employee;
+import com.heartfulness.platform.grpc.seeker.service.Application;
 
-public class EmployeeEntity {
+
+public class ApplicationEntity {
     private Long id;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
 
-    public EmployeeEntity() {
+    public ApplicationEntity() {
     }
 
-    public EmployeeEntity(Long id, String firstName, String lastName, String phone, String email) {
+    public ApplicationEntity(Long id, String firstName, String lastName, String phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,22 +61,22 @@ public class EmployeeEntity {
         this.email = email;
     }
 
-    public Employee toProto(){
+    public Application toProto(){
 
-        return  Employee.newBuilder().setId(getId())
+        return  Application.newBuilder().setId(getId())
                 .setEmail(getEmail())
                 .setFirstName(getFirstName())
                 .setLastName(getLastName())
                 .setPhone(getPhone()).build();
     }
 
-    public static EmployeeEntity fromProto(Employee empRequest){
-        EmployeeEntity  empEntity = new EmployeeEntity();
-        empEntity.setId(empRequest.getId());
-        empEntity.setEmail(empRequest.getEmail());
-        empEntity.setFirstName(empRequest.getFirstName());
-        empEntity.setLastName(empRequest.getLastName());
-        empEntity.setPhone(empRequest.getPhone());
-        return empEntity;
+    public static ApplicationEntity fromProto(Application applicationRequest){
+        ApplicationEntity applicationEntity = new ApplicationEntity();
+        applicationEntity.setId(applicationRequest.getId());
+        applicationEntity.setEmail(applicationRequest.getEmail());
+        applicationEntity.setFirstName(applicationRequest.getFirstName());
+        applicationEntity.setLastName(applicationRequest.getLastName());
+        applicationEntity.setPhone(applicationRequest.getPhone());
+        return applicationEntity;
     }
 }

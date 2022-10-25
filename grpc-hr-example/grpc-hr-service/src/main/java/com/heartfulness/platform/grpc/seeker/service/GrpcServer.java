@@ -1,4 +1,4 @@
-package com.jobinesh.example.grpc.hr.service;
+package com.heartfulness.platform.grpc.seeker.service;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -15,7 +15,7 @@ public class GrpcServer {
     private void startServer() throws Exception {
         // Create a new server to listen on port 8080
         Server server = ServerBuilder.forPort(8080)
-                .addService(new HRServiceGrpcImpl())
+                .addService(new SeekerServiceGrpcImpl())
                 .intercept(new GrpcExceptionHandler())
                 .build();
 

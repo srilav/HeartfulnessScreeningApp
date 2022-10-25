@@ -1,4 +1,4 @@
-package com.jobinesh.example.grpc.hr.service;
+package com.heartfulness.platform.grpc.seeker.service;
 
 import io.grpc.*;
 

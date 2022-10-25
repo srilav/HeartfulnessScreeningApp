@@ -1,7 +1,7 @@
 [
   {
     "id": 4000,
-    "departmentName": "HR",
+    "seekerName": "HR",
     "location": "San Francisco",
     "employees": [
       {
@@ -22,7 +22,7 @@
   },
   {
     "id": 5000,
-    "departmentName": "IT",
+    "seekerName": "IT",
     "location": "New York",
     "employees": [
       {
@@ -78,7 +78,7 @@
   },
   {
     "id": 6000,
-    "departmentName": "Software Engineering",
+    "seekerName": "Software Engineering",
     "location": "New York",
     "employees": [
       {
