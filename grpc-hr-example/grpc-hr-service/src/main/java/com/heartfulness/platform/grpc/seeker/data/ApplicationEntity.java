@@ -1,82 +1,59 @@
 package com.heartfulness.platform.grpc.seeker.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.heartfulness.platform.grpc.seeker.service.Application;
+import com.heartfulness.platform.grpc.seeker.service.ApplicationStatus;
+import com.heartfulness.platform.grpc.seeker.service.Answers;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ApplicationEntity {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String email;
+    String applicationId;
+    ApplicationStatus status;
+    @JsonProperty("abyasiAnswers")
+    AnswersEntity abyasiAnswers;
+    @JsonProperty("functionaryAnswers")
+    AnswersEntity functionaryAnswers;
 
     public ApplicationEntity() {
     }
-
-    public ApplicationEntity(Long id, String firstName, String lastName, String phone, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
+    public ApplicationEntity(String applicationId, AnswersEntity abyasiAnswers, AnswersEntity functionaryAnswers) {
+        this.applicationId = applicationId;
+        this.abyasiAnswers = abyasiAnswers;
+        this.functionaryAnswers = functionaryAnswers;
+    }
+    public String getApplicationId() {
+        return applicationId;
+    }
+    public void setApplicationId(String applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public Long getId() {
-        return id;
+    public AnswersEntity getAbyasiAnswers() {
+        return abyasiAnswers;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setAbyasiAnswers(AnswersEntity abyasiAnswers) {
+        this.abyasiAnswers = abyasiAnswers;
     }
-
-    public String getFirstName() {
-        return firstName;
+    public AnswersEntity getFunctionaryAnswers() {
+        return functionaryAnswers;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFunctionaryAnswers(AnswersEntity functionaryAnswers) {
+        this.functionaryAnswers = functionaryAnswers;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Application toProto(){
-
-        return  Application.newBuilder().setId(getId())
-                .setEmail(getEmail())
-                .setFirstName(getFirstName())
-                .setLastName(getLastName())
-                .setPhone(getPhone()).build();
+        return  Application.newBuilder().setApplicationId(getApplicationId())
+                .setAbyasiAnswers(getAbyasiAnswers().toProto())
+                .setFunctionaryAnswers(getFunctionaryAnswers().toProto())
+                .build();
     }
 
     public static ApplicationEntity fromProto(Application applicationRequest){
         ApplicationEntity applicationEntity = new ApplicationEntity();
-        applicationEntity.setId(applicationRequest.getId());
-        applicationEntity.setEmail(applicationRequest.getEmail());
-        applicationEntity.setFirstName(applicationRequest.getFirstName());
-        applicationEntity.setLastName(applicationRequest.getLastName());
-        applicationEntity.setPhone(applicationRequest.getPhone());
+        applicationEntity.setAbyasiAnswers( AnswersEntity.fromProto(applicationRequest.getAbyasiAnswers()));
+        applicationEntity.setFunctionaryAnswers( AnswersEntity.fromProto(applicationRequest.getFunctionaryAnswers()));
+        applicationEntity.setApplicationId(applicationRequest.getApplicationId());
         return applicationEntity;
     }
 }

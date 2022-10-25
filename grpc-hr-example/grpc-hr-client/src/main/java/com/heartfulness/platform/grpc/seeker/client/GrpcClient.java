@@ -48,18 +48,18 @@ public class GrpcClient {
 
         try {
               log("gRPC Client");
-//            Seeker seeker = client.findSeekerById(1000L);
-//            log(seeker.toString());
+            Seeker seeker = client.findSeekerById(1000);
+            log(seeker.toString());
 
             CountDownLatch finishLatch = new CountDownLatch(1);
             client.updateSeekersUsingStream(finishLatch);
             //client.fetchAllSeekersUsingStream();
-            client.updateSeeker(1000L);
-            Seeker seeker = client.findSeekerById(1000L);
+            client.updateSeeker(1000);
+//            Seeker seeker = client.findSeekerById(1000);
             SeekerFilter filter = SeekerFilter.newBuilder().build();
             List<Seeker> seekersList = client.findSeekerByFilter(filter);
-            client.deleteSeeker(1000L);
-            seeker = client.findSeekerById(1000L);
+            client.deleteSeeker(1000);
+            seeker = client.findSeekerById(1000);
 
             if (!finishLatch.await(10, TimeUnit.SECONDS)) {
                 log("gRPC API call can not finish within 10 seconds");
@@ -87,11 +87,11 @@ public class GrpcClient {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    private Seeker findSeekerById(Long id) {
+    private Seeker findSeekerById(int id) {
         return seekerServiceBlockingStub.findSeekerById(Int64Value.of(id));
     }
 
-    public Seeker updateSeeker(Long id) {
+    public Seeker updateSeeker(int id) {
         Seeker seeker = Seeker.newBuilder().setId(id)
                 .setSeekerName("Administration")
                 .setLocation("Foster City")
@@ -123,7 +123,7 @@ public class GrpcClient {
 
     }
 
-    public void deleteSeeker(Long id) {
+    public void deleteSeeker(int id) {
         seekerServiceBlockingStub.deleteSeeker(Int64Value.of(id));
     }
 

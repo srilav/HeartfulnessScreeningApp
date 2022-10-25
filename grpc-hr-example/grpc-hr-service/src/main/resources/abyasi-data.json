@@ -1,0 +1,69 @@
+[
+    {
+      "id": 1000,
+      "seekerName": "HR",
+      "location": "San Francisco",
+      "firstName": "Tom",
+      "lastName": "Lee",
+      "phoneNo": "60044445555",
+      "email": "tom.lee@grpc.com",
+      "fullName":"Lalitha V",
+      "fatherName":"Vydyanadham",
+      "motherName":"Kameswari",
+      "dateOfBirth":"30Jan72",
+      "gender":"Female",
+      "highestEducationQualification":"Masters",
+      "addressLine1":"Whitefield",
+      "addressLine2":"Seeghalli",
+      "city":"Bangalore",
+      "district":"cccc",
+      "state":"Karnataka",
+      "pincode":"560115",
+      "heartfulnessCenter":"Kanha",
+      "dateOfFirstSitting":"30Jan88",
+      "nameOfPreceptor":"Sridevi D",
+      "whomDoYouLiveWith":"family",
+      "applications": [
+        {
+          "id": 10001
+        },
+        {
+          "id": 10002
+        }
+      ]
+    },
+    {
+
+        "id": 2000,
+        "seekerName": "HR",
+        "location": "San Francisco",
+      "firstName": "Tom",
+      "lastName": "Lee",
+      "phoneNo": "60044445555",
+      "email": "tom.lee@grpc.com",
+      "fullName":"Lalitha V",
+      "fatherName":"Vydyanadham",
+      "motherName":"Kameswari",
+      "dateOfBirth":"30Jan72",
+      "gender":"Female",
+      "highestEducationQualification":"Masters",
+      "addressLine1":"Whitefield",
+      "addressLine2":"Seeghalli",
+      "city":"Bangalore",
+      "district":"cccc",
+      "state":"Karnataka",
+      "pincode":"560115",
+      "heartfulnessCenter":"Kanha",
+      "dateOfFirstSitting":"30Jan88",
+      "nameOfPreceptor":"Sridevi D",
+      "whomDoYouLiveWith":"family",
+        "applications": [
+          {
+            "id": 10001
+          },
+          {
+            "id": 10002
+          }
+        ]
+      }
+]

@@ -63,7 +63,7 @@ public class SeekerServiceDataRepository {
         List<SeekerEntity> seekersList = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            InputStream jsonInput = SeekerServiceDataRepository.class.getResourceAsStream("/hr-data.json");
+            InputStream jsonInput = SeekerServiceDataRepository.class.getResourceAsStream("/abyasi-data.json");
             seekersList = mapper.readValue(jsonInput,
                     new TypeReference<List<SeekerEntity>>() {
                     });

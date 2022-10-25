@@ -25,31 +25,79 @@ service SeekerService {
   rpc updateSeekersInBatch(stream Seeker) returns (stream Seeker){};
 }
 
-//Department filter object
+//Seeker filter object
 message SeekerFilter {
   int64 id = 1;
   string seekerName = 2;
   string location = 3;
+  
 }
 
-//Department result list
+//Seeker result list
 message SeekerList {
     repeated Seeker resultList=1;
     google.protobuf.Int64Value resultCount=2;
 }
 
-//Department object
+//Seeker object
 message Seeker {
   int64 id = 1;
   string seekerName = 2;
   string location = 3;
-  repeated Application applications = 4;
+  string firstName = 4;
+  string lastName = 5;
+  string fullName = 6;
+  string fatherName = 7;
+  string motherName = 8;
+  string dateOfBirth = 9;
+  string phoneNo = 10;
+  string email = 11;
+  string gender = 12;
+  string highestEducationQualification = 13;
+  string addressLine1 = 14;
+  string addressLine2 = 15;
+  string city = 16;
+  string district = 17;
+  string state = 18;
+  string pincode = 19;
+  string heartfulnessCenter = 20;
+  string dateOfFirstSitting = 21;
+  string nameOfPreceptor = 22;
+  string whomDoYouLiveWith = 23;
+  repeated Application applications = 24;
 }
-//Employee object
+enum ApplicationStatus {
+  NOT_YET_APPLIED_FOR_LEVEL_1 = 0;
+  ABYASI_SUBMITTED = 1;
+  WAITING_FUNCTIONARY_ASSIGNED = 2;
+  WAITING_FUNCTIONARY_SUBMITTED = 3;
+  PASSED_SCREENING=4;
+  FAILED_IN_SCREENING=5;
+  ONHOLD_FUNCTION_DISPUTE_WAITING=6;
+  FUNCTION_DISPUTE_SUBMITTED = 7;
+  WAITING_FOR_FUNCTIONARY_DISPUTE_REVIEW = 8;
+  NOT_APPLICABLE = 9;// For functionary this status will always be not_applicable
+  APPROVED=10;
+  REJECTED=11;
+}
+
+//Application object
 message Application {
-  int64 id = 1;
-  string firstName = 2;
-  string lastName = 3;
-  string phone = 4;
-  string email = 5;
+  string applicationId = 1;
+  ApplicationStatus status = 2;
+  Answers abyasiAnswers = 3;
+  Answers functionaryAnswers = 4;
+}
+
+message Answers{
+  string language = 1;
+  repeated QuestionsAndAnswers questionsAndAnswers = 2;
+  string finalComments=3;
+}
+
+message QuestionsAndAnswers {
+  string categoryId=1;
+  string questionId = 2;
+  string answerOptionId = 3;
+  string additionalComment=4;
 }
