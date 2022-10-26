@@ -1,5 +1,6 @@
 package com.heartfulness.platform.grpc.seeker.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.heartfulness.platform.grpc.seeker.service.Application;
 import com.heartfulness.platform.grpc.seeker.service.ApplicationStatus;
@@ -7,7 +8,7 @@ import com.heartfulness.platform.grpc.seeker.service.Answers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@JsonIgnoreProperties
 public class ApplicationEntity {
     String applicationId;
     ApplicationStatus status;

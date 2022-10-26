@@ -14,6 +14,13 @@ import "google/protobuf/type.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
+enum UserRole {
+  ABHYASI = 0;
+  FUNCTIONARY_ROLE = 1;
+  FUNCTIONARY_DISPUTE_ROLE = 2;
+  MASTER_ROLE=3;
+}
+
 // Interface exported by the server.
 service SeekerService {
   rpc createSeeker (Seeker) returns (Seeker) {};
@@ -23,6 +30,12 @@ service SeekerService {
   rpc findSeekerById (google.protobuf.Int64Value) returns (Seeker) {};
   rpc findAllSeekers(google.protobuf.Empty) returns (stream Seeker) {};
   rpc updateSeekersInBatch(stream Seeker) returns (stream Seeker){};
+  rpc submitApplication (Answers) returns (google.protobuf.StringValue);
+  rpc submitFunctionaryAnswers (Answers) returns (google.protobuf.BoolValue);
+  rpc getApplicationsWaitingForMyReview(Empty) returns (ApplicationsList);
+  rpc getApplicationsProcessed(Empty) returns (ApplicationsList);
+  rpc getApplication (google.protobuf.StringValue) returns (Application);
+  rpc reviewApplication (Answers) returns (google.protobuf.StringValue);
 }
 
 //Seeker filter object
@@ -66,6 +79,12 @@ message Seeker {
   string whomDoYouLiveWith = 23;
   repeated Application applications = 24;
 }
+message Profile {
+  string applicationId = 1;
+  string AbyasiId=2;
+  UserRole role = 3;
+  ApplicationStatus applicationStatus = 4;
+}
 enum ApplicationStatus {
   NOT_YET_APPLIED_FOR_LEVEL_1 = 0;
   ABYASI_SUBMITTED = 1;
@@ -84,9 +103,10 @@ enum ApplicationStatus {
 //Application object
 message Application {
   string applicationId = 1;
-  ApplicationStatus status = 2;
-  Answers abyasiAnswers = 3;
-  Answers functionaryAnswers = 4;
+  string AbyasiId=2;
+  ApplicationStatus status = 3;
+  Answers abyasiAnswers = 4;
+  Answers functionaryAnswers = 5;
 }
 
 message Answers{
@@ -100,4 +120,21 @@ message QuestionsAndAnswers {
   string questionId = 2;
   string answerOptionId = 3;
   string additionalComment=4;
+}
+
+message ApplicationSummary {
+  string applicationId = 1;
+  ApplicationStatus status = 2;
+  string applicantEmail = 3;
+  string applicantName = 4;
+  string applicantPhone = 5;
+}
+
+message ApplicationsList {
+  repeated ApplicationSummary applications = 1;
+}
+
+
+message Empty{
+
 }

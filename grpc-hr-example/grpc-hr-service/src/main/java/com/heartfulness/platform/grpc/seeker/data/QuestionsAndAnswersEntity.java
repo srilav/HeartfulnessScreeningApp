@@ -1,8 +1,9 @@
 package com.heartfulness.platform.grpc.seeker.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.heartfulness.platform.grpc.seeker.service.QuestionsAndAnswers;
 
-
+@JsonIgnoreProperties
 public class QuestionsAndAnswersEntity {
     private String categoryId;
     private String questionId;

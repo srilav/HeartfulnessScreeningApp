@@ -50,20 +50,20 @@ public class GrpcClient {
               log("gRPC Client");
             Seeker seeker = client.findSeekerById(1000);
             log(seeker.toString());
-
-            CountDownLatch finishLatch = new CountDownLatch(1);
-            client.updateSeekersUsingStream(finishLatch);
-            //client.fetchAllSeekersUsingStream();
-            client.updateSeeker(1000);
-//            Seeker seeker = client.findSeekerById(1000);
-            SeekerFilter filter = SeekerFilter.newBuilder().build();
-            List<Seeker> seekersList = client.findSeekerByFilter(filter);
-            client.deleteSeeker(1000);
-            seeker = client.findSeekerById(1000);
-
-            if (!finishLatch.await(10, TimeUnit.SECONDS)) {
-                log("gRPC API call can not finish within 10 seconds");
-            }
+//
+//            CountDownLatch finishLatch = new CountDownLatch(1);
+//            client.updateSeekersUsingStream(finishLatch);
+//            //client.fetchAllSeekersUsingStream();
+//            client.updateSeeker(1000);
+////            Seeker seeker = client.findSeekerById(1000);
+//            SeekerFilter filter = SeekerFilter.newBuilder().build();
+//            List<Seeker> seekersList = client.findSeekerByFilter(filter);
+//            client.deleteSeeker(1000);
+//            seeker = client.findSeekerById(1000);
+//
+//            if (!finishLatch.await(10, TimeUnit.SECONDS)) {
+//                log("gRPC API call can not finish within 10 seconds");
+//            }
 
         } catch (StatusRuntimeException e) {
             // Do not use Status.equals(...) - it's not well defined. Compare Code directly.
